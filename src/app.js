@@ -51,6 +51,9 @@ function displayTemperature(response) {
 
   dateElement.innerHTML = formatDate(response.data.time * 1000);
   // Revisar tema iconos, me salta el primero de la lista de la API pero no se pone el icono correcto. ¿como lo soluciono, hay que hacer un array?
+
+  // solucionar que primero cargue icono HTML y luego icono API
+
   iconElement.setAttribute("src", response.data.condition.icon_url);
 
   iconElement.setAttribute("alt", response.data.condition.description);
