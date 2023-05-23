@@ -24,6 +24,7 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
+  console.log(response.data);
   let temperatureElement = document.querySelector("#temperature");
 
   let cityElement = document.querySelector("#city");
@@ -36,6 +37,8 @@ function displayTemperature(response) {
 
   let dateElement = document.querySelector("#date");
 
+  let iconElement = document.querySelector("#icon");
+
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
 
   cityElement.innerHTML = response.data.city;
@@ -47,6 +50,10 @@ function displayTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
   dateElement.innerHTML = formatDate(response.data.time * 1000);
+  // Revisar tema iconos, me salta el primero de la lista de la API pero no se pone el icono correcto. ¿como lo soluciono, hay que hacer un array?
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 let key = "0239330ab540e803o5b4f9t7e63fbef4";
@@ -54,6 +61,10 @@ let query = "New York";
 let units = "metric";
 
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=new_york&key=0239330ab540e803o5b4f9t7e63fbef4&units=metric`;
+
+//let apiUrl = `https://api.shecodes.io/weather/v1/current?query={query}&key={key}&units={units}`;
+
+// https://www.shecodes.io/learn/apis/weather
 
 console.log(apiUrl);
 
