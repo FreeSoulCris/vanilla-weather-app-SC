@@ -50,7 +50,6 @@ function displayTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
   dateElement.innerHTML = formatDate(response.data.time * 1000);
-  // Revisar tema iconos, me salta el primero de la lista de la API pero no se pone el icono correcto. ¿como lo soluciono, hay que hacer un array?
 
   // solucionar que primero cargue icono HTML y luego icono API
 
@@ -62,34 +61,20 @@ function displayTemperature(response) {
 function search(city) {
   let key = "0239330ab540e803o5b4f9t7e63fbef4";
   let units = "metric";
-  // he borrado el id city al crear el form
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=new_york&key=0239330ab540e803o5b4f9t7e63fbef4&units=metric`;
+
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${key}&units=${units}`;
+
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function handleSubmit(event) {
   event.preventDefault();
+  console.log("handleSubmit");
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
 
   console.log(cityInputElement.value);
 }
-// revisar funcionamiento form - no busca el valor introducido.
-
-search("New York");
-
-let key = "0239330ab540e803o5b4f9t7e63fbef4";
-let query = "New York";
-let units = "metric";
-
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=new_york&key=0239330ab540e803o5b4f9t7e63fbef4&units=metric`;
-
-//let apiUrl = `https://api.shecodes.io/weather/v1/current?query={query}&key={key}&units={units}`;
-
-// https://www.shecodes.io/learn/apis/weather
-
-console.log(apiUrl);
-
-axios.get(apiUrl).then(displayTemperature);
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
