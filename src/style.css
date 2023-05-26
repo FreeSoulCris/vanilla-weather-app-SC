@@ -78,3 +78,26 @@ ul {
 .weather-temperature .active:hover {
   text-decoration: none;
 }
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  color: #000;
+}
+
+.weather-forecast-temperatures {
+  font-size: 13px;
+}
+.weather-forecast-temperature-max {
+  color: crimson;
+  font-weight: 600;
+}
+
+.weather-forecast-temperature-min {
+  color: cornflowerblue;
+  opacity: 0.8;
+}
