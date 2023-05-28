@@ -23,7 +23,8 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
@@ -51,6 +52,16 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
   console.log(forecastHTML);
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+
+  let key = "0239330ab540e803o5b4f9t7e63fbef4";
+
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -87,6 +98,9 @@ function displayTemperature(response) {
   iconElement.setAttribute("src", response.data.condition.icon_url);
 
   iconElement.setAttribute("alt", response.data.condition.description);
+
+  console.log(response);
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
@@ -140,4 +154,3 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 search("Barcelona");
-displayForecast();
