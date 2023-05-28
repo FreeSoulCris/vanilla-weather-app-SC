@@ -55,10 +55,10 @@ function displayForecast(response) {
                   width="42px"
                 />
                 <div class="weather-forecast-temperatures">
-                  <span class="weather-forecast-temperature-max">${Math.round(
+                  <span id="weather-forecast-temperature-max" class="weather-forecast-temperature-max">${Math.round(
                     forecastDay.temperature.maximum
                   )}º</span>
-                  <span class="weather-forecast-temperature-min">${Math.round(
+                  <span id="weather-forecast-temperature-min" class="weather-forecast-temperature-min">${Math.round(
                     forecastDay.temperature.minimum
                   )}º</span>
                 </div>
@@ -68,16 +68,13 @@ function displayForecast(response) {
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
 
 function getForecast(coordinates) {
-  console.log(coordinates);
-
   let key = "0239330ab540e803o5b4f9t7e63fbef4";
 
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${key}&units=metric`;
-  console.log(apiUrl);
+
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -116,8 +113,9 @@ function displayTemperature(response) {
 
   iconElement.setAttribute("alt", response.data.condition.description);
 
-  console.log(response);
   getForecast(response.data.coordinates);
+
+  updateForecastTemperature("celsius");
 }
 
 function search(city) {
@@ -131,23 +129,23 @@ function search(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  console.log("handleSubmit");
+
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
-
-  console.log(cityInputElement.value);
 }
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
 
-  // remove the active class the celsius link & add active class to fahrenheit link
+  // remove the active class from the Celsius link & add the active class to the Fahrenheit link
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  updateForecastTemperature("fahrenheit"); // Se actualiza el forecast
 }
 
 function displayCelsiusTemperature(event) {
@@ -157,6 +155,8 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  updateForecastTemperature("celsius"); // Se actualiza el forecast
 }
 
 let celsiusTemperature = null;
@@ -169,5 +169,42 @@ fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+function convertToCelsius(temperature) {
+  return ((temperature - 32) * 5) / 9;
+}
+
+function convertToFahrenheit(temperature) {
+  return (temperature * 9) / 5 + 32;
+}
+
+function convertTemperature(metric, temperature) {
+  if (metric === "celsius") {
+    return convertToCelsius(temperature);
+  } else {
+    return convertToFahrenheit(temperature);
+  }
+}
+
+function updateForecastTemperature(metric) {
+  let maxTemperatureElements = document.querySelectorAll(
+    ".weather-forecast-temperature-max"
+  );
+  let minTemperatureElements = document.querySelectorAll(
+    ".weather-forecast-temperature-min"
+  );
+
+  maxTemperatureElements.forEach(function (element) {
+    let temperature = parseFloat(element.textContent);
+    element.textContent =
+      Math.round(convertTemperature(metric, temperature)) + "°";
+  });
+
+  minTemperatureElements.forEach(function (element) {
+    let temperature = parseFloat(element.textContent);
+    element.textContent =
+      Math.round(convertTemperature(metric, temperature)) + "°";
+  });
+}
 
 search("Barcelona");
