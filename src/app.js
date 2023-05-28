@@ -137,7 +137,11 @@ function displayTemperature(response) {
   } else if (weatherDescription.includes("broken-clouds-night")) {
     bodyElement.className = "weather-background-broken-clouds-night";
   } else if (weatherDescription.includes("rain-day")) {
-    bodyElement.className = "weather-background-rain-dayy";
+    bodyElement.className = "weather-background-rain-day";
+  } else if (weatherDescription.includes("light-rain-night")) {
+    bodyElement.className = "weather-background-rain-night";
+  } else if (weatherDescription.includes("rain-day")) {
+    bodyElement.className = "weather-background-rain-day";
   } else if (weatherDescription.includes("rain-night")) {
     bodyElement.className = "weather-background-rain-night";
   } else if (weatherDescription.includes("thunderstorm-day")) {
