@@ -116,6 +116,45 @@ function displayTemperature(response) {
   getForecast(response.data.coordinates);
 
   updateForecastTemperature("celsius");
+
+  descriptionElement.innerHTML = response.data.condition.description;
+  // Cambiar clase de fondo del body según el valor de description
+  let bodyElement = document.querySelector("body");
+  let weatherDescription = response.data.condition.icon_url.toLowerCase();
+
+  if (weatherDescription.includes("clear-sky-day")) {
+    bodyElement.className = "weather-background-clear-sky-day";
+  } else if (weatherDescription.includes("clear-sky-night")) {
+    bodyElement.className = "weather-background-clear-sky-night";
+  } else if (weatherDescription.includes("few-clouds-day")) {
+    bodyElement.className = "weather-background-few-clouds-day";
+  } else if (weatherDescription.includes("few-clouds-night")) {
+    bodyElement.className = "weather-background-few-clouds-night";
+  } else if (weatherDescription.includes("scattered-clouds")) {
+    bodyElement.className = "weather-background-scattered-clouds";
+  } else if (weatherDescription.includes("broken-clouds-day")) {
+    bodyElement.className = "weather-background-broken-clouds-day";
+  } else if (weatherDescription.includes("broken-clouds-night")) {
+    bodyElement.className = "weather-background-broken-clouds-night";
+  } else if (weatherDescription.includes("rain-day")) {
+    bodyElement.className = "weather-background-rain-dayy";
+  } else if (weatherDescription.includes("rain-night")) {
+    bodyElement.className = "weather-background-rain-night";
+  } else if (weatherDescription.includes("thunderstorm-day")) {
+    bodyElement.className = "weather-background-thunderstorm-day";
+  } else if (weatherDescription.includes("thunderstorm-night")) {
+    bodyElement.className = "weather-background-thunderstorm-night";
+  } else if (weatherDescription.includes("snow-day")) {
+    bodyElement.className = "weather-background-snow-day";
+  } else if (weatherDescription.includes("snow-night")) {
+    bodyElement.className = "weather-background-snow-night";
+  } else if (weatherDescription.includes("mist-night")) {
+    bodyElement.className = "weather-background-mist-night";
+  } else if (weatherDescription.includes("mist-day")) {
+    bodyElement.className = "weather-background-mist-day";
+  } else {
+    bodyElement.className = ""; // Si no coincide con ninguna descripción, eliminar todas las clases
+  }
 }
 
 function search(city) {

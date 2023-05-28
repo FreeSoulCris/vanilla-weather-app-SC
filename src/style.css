@@ -101,3 +101,60 @@ ul {
   color: cornflowerblue;
   opacity: 0.8;
 }
+
+.weather-background-clear-sky-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/541/original/clear-sky-day.png?1685289621");
+}
+
+.weather-background-clear-sky-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/542/original/clear-sky-night.png?1685289640");
+}
+
+.weather-background-few-clouds-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/540/original/few-clouds-day.png?1685289604");
+}
+
+.weather-background-few-clouds-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/536/original/clouds-night.png?1685289097");
+}
+
+.weather-background-scattered-clouds {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/543/original/scattered-clouds.png?1685289726");
+}
+
+.weather-background-broken-clouds-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/540/original/few-clouds-day.png?1685289604");
+}
+
+.weather-background-broken-clouds-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/530/original/cloudy-night.png?1685288998");
+}
+
+.weather-background-rain-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/531/original/rainy-day.png?1685289007");
+}
+
+.weather-background-rain-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/533/original/rainy-night.png?1685289025");
+}
+
+.weather-background-thunderstorm-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/537/original/thunderstorm-day.png?1685289122");
+}
+
+.weather-background-thunderstorm-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/532/original/thuderstorm-night.png?1685289014");
+}
+
+.weather-background-snow-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/539/original/snow-day.png?1685289595");
+}
+.weather-background-snow-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/538/original/snow-night.png?1685289585");
+}
+.weather-background-mist-night {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/534/original/mist-night.png?1685289050");
+}
+.weather-background-mist-day {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/083/535/original/mist-day.png?1685289058");
+}
