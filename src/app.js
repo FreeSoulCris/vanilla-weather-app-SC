@@ -97,7 +97,7 @@ function displayTemperature(response) {
 
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 
-  cityElement.innerHTML = response.data.city;
+  cityElement.innerHTML = `<span style="font-size:38px line-height:1px">📍</span>${response.data.city} `;
 
   descriptionElement.innerHTML = response.data.condition.description;
 
